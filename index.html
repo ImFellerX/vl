@@ -16,22 +16,26 @@
             <div class = "buttons">
                 <button class="btn" id = "yesButton" onclick="nextPage()">Yes</button>
                 <button class="btn" id="noButton" onmouseover="moveButton()" onclick="moveButton()">No</button>
-                <script>
-                      function nextPage() {
+               <script>
+    function nextPage() {
         window.location.href = "yes.html";
     }
 
     function moveButton() {
         var button = document.getElementById('noButton');
-        var x = Math.random() * (window.innerWidth - button.offsetWidth - 50);
-        var y = Math.random() * (window.innerHeight - button.offsetHeight - 50);
+        var maxX = window.innerWidth - button.offsetWidth - 20; 
+        var maxY = window.innerHeight - button.offsetHeight - 20; 
+        var x = Math.random() * maxX;
+        var y = Math.random() * maxY;
+
+        button.style.position = "absolute"; 
         button.style.left = `${x}px`;
         button.style.top = `${y}px`;
     }
 
-    // Detecting touch for mobile
+    document.getElementById('noButton').addEventListener('mouseenter', moveButton);
     document.getElementById('noButton').addEventListener('touchstart', function(event) {
-        event.preventDefault(); // Prevents accidental click
+        event.preventDefault(); 
         moveButton();
     });
 </script>
